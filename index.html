@@ -6,6 +6,32 @@
   </head>
   <body>
     <script>
+	
+		function fetchAndDecode(url) {
+			return fetch(url).then(response => {
+				if(!response.ok) {
+					throw new Error('HTTP error! status: ${response.status}');
+				} else {
+					if(response.headers.get("content-type") === 'image/jpeg') {
+						return response.blob();
+					} else if(response.headers.get("content-type") === 'text/plain') {
+						return response.text();
+					}
+				}
+			})
+			.catch(e => {
+				console.log('There has been a problem with your fetch operation for resource "${url}": ` + e.message);
+			});
+		};
+	
+		let coffee = fetchAndDecode('coffee.jpg');
+		let tea = fetchAndDecode('tea.jpg');
+		let description = fetchAndDecode('description.txt');
+		
+		Promise.all([coffee, tea, description]).then(values => {
+		
+		});
+		
 	</script>
   </body>
 </html>
