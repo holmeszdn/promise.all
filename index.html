@@ -14,7 +14,7 @@
 				} else {
 					if(response.headers.get("content-type") === 'image/jpeg') {
 						return response.blob();
-					} else if(response.headers.get("content-type") === 'text/plain') {
+					} else if(response.headers.get("content-type") === 'text') {
 						return response.text();
 					}
 				}
