@@ -15,7 +15,8 @@
 					console.log(response.headers.get("content-type"));
 					if(response.headers.get("content-type") === 'image/jpeg') {
 						return response.blob();
-					} else {
+					} else if(response.headers.get("content-type") === 'text/plain') {
+						console.log(response.text());
 						return response.text();
 					}
 				}
