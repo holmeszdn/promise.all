@@ -12,6 +12,7 @@
 				if(!response.ok) {
 					throw new Error('HTTP error! status: ${response.status}');
 				} else {
+					console.log(response.headers.get("content-type");
 					if(response.headers.get("content-type") === 'image/jpeg') {
 						return response.blob();
 					} else if(response.headers.get("content-type") === 'text/plain') {
